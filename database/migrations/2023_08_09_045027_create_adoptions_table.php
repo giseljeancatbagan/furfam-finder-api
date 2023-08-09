@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('adoptions', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->unsignedBigInteger('pet_id');
             $table->string('first_name');
-            $table->timestamp('last_name');
+            $table->string('last_name');
             $table->string('contact_info');
-            $table->rememberToken();
+            $table->timestamp('adoption_date');
+            $table->enum('adoption_status', ['Adopted', 'Pending', 'Cancelled']);
             $table->timestamps();
+
+            $table->foreign('pet_id')->references('id')->on('pets');
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('adoptions');
     }
 };
