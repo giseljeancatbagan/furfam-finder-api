@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('species');
             $table->string('name');
             $table->string('breed');
-            $table->unsignedInteger('age');
+            $table->timestamp('birthday');
             $table->enum('gender', ['Male', 'Female']);
             $table->enum('size', ['small', 'medium', 'large', 'giant']);
             $table->text('description');

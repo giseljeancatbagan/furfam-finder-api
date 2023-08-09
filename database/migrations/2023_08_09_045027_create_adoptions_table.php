@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('contact_info');
             $table->timestamp('adoption_date');
-            $table->enum('adoption_status', ['Adopted', 'Pending', 'Cancelled']);
             $table->timestamps();
 
             $table->foreign('pet_id')->references('id')->on('pets');
