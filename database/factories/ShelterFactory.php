@@ -18,9 +18,9 @@ class ShelterFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->company(),
             'location' => fake()->address(),
-            'contact_info' => '09' . fake()->randomNumber(9, true),
+            'contact_info' => '09' . fake()->phoneNumber(),
             'user_id' => User::factory()
         ];
     }

@@ -21,7 +21,7 @@ class AdoptionFactory extends Factory
             'pet_id' => Pet::factory(),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'contact_info' => '09' . fake()->randomNumber(9, true),
+            'contact_info' => '09' . fake()->phoneNumber(),
             'adoption_date' => fake()->dateTimeThisYear()
         ];
     }

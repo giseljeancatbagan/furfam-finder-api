@@ -24,7 +24,7 @@ class PetFactory extends Factory
             'birthday' => fake()->dateTimeThisYear(),
             'gender' => fake()->randomElement(['male', 'female']),
             'size' => fake()->randomElement(['small', 'medium', 'large', 'giant']),
-            'description' => fake()->sentence(),
+            'description' => fake()->realText(),
             'availability_status' => fake()->randomElement(['available', 'pending', 'adopted']),
             'image' => fake()->imageUrl(),
             'shelter_id' => Shelter::factory()

@@ -9,9 +9,9 @@ class Shelter extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function user()
     {
-        return $this->has(User::class);
+        return $this->belongsTo(User::class);
     }
 
 }
