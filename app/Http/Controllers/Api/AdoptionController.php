@@ -23,7 +23,13 @@ class AdoptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $adoption = new Adoption;
+        $adoption->name = $request->input('name');
+        $adoption->age = $request->input('age');
+        $adoption->breed = $request->input('breed');
+        $adoption->save();
+
+        return new AdoptionResource($adoption);
     }
 
     /**

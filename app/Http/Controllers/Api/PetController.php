@@ -23,7 +23,13 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pet = new Pet;
+        $pet->name = $request->input('name');
+        $pet->age = $request->input('age');
+        $pet->breed = $request->input('breed');
+        $pet->save();
+
+        return new PetResource($pet);
     }
 
     /**

@@ -22,7 +22,13 @@ class ShelterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shelter = new Shelter;
+        $shelter->name = $request->input('name');
+        $shelter->location = $request->input('location');
+        $shelter->capacity = $request->input('capacity');
+        $shelter->save();
+
+        return new ShelterResource($shelter);
     }
 
     /**
