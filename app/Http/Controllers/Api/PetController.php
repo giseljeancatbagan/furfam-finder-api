@@ -47,7 +47,13 @@ class PetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pet = Pet::findOrFail($id);
+        $pet->name = $request->input('name');
+        $pet->age = $request->input('age');
+        $pet->breed = $request->input('breed');
+        $pet->save();
+    
+        return new PetResource($pet);
     }
 
     /**
@@ -55,6 +61,9 @@ class PetController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pet = Pet::findOrFail($id);
+        $pet->delete();
+
+        return response(null, 204);
     }
 }

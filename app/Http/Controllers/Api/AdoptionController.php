@@ -46,7 +46,13 @@ class AdoptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $adoption = Adoption::findOrFail($id);
+        $adoption->name = $request->input('name');
+        $adoption->age = $request->input('age');
+        $adoption->breed = $request->input('breed');
+        $adoption->save();
+    
+        return new AdoptionResource($adoption);
     }
 
     /**
@@ -54,6 +60,9 @@ class AdoptionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $adoption = Adoption::findOrFail($id);
+        $adoption->delete();
+    
+        return response(null, 204);
     }
 }

@@ -44,7 +44,13 @@ class ShelterController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $shelter = Shelter::findOrFail($id);
+        $shelter->name = $request->input('name');
+        $shelter->location = $request->input('location');
+        $shelter->capacity = $request->input('capacity');
+        $shelter->save();
+
+        return new ShelterResource($shelter);
     }
 
     /**
@@ -52,6 +58,9 @@ class ShelterController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $shelter = Shelter::findOrFail($id);
+        $shelter->delete();
+
+        return response(null, 204);
     }
 }
