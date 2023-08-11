@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\AdoptionController;
+use App\Http\Controllers\Api\PetController;
+use App\Http\Controllers\Api\ShelterController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function () {
+    
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('shelters', ShelterController::class);
+    Route::apiResource('pets', PetController::class);
+    Route::apiResource('adoptions', AdoptionController::class);
 });
