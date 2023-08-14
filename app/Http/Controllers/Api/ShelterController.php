@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShelterStoreRequest;
+use App\Http\Requests\ShelterUpdateRequest;
 use App\Http\Resources\ShelterResource;
 use App\Models\Shelter;
 use Illuminate\Http\Request;
@@ -20,15 +22,16 @@ class ShelterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ShelterStoreRequest $request)
     {
-        $shelter = new Shelter;
-        $shelter->name = $request->input('name');
-        $shelter->location = $request->input('location');
-        $shelter->capacity = $request->input('capacity');
-        $shelter->save();
+        return ShelterResource::make(Shelter::create([
 
-        return new ShelterResource($shelter);
+            'name'=> $request->name,
+            'location' => $request->location,
+            'contact_info' => $request->contact_info,
+            'user_id' => $request->user_id
+
+        ]));
     }
 
     /**
@@ -42,25 +45,38 @@ class ShelterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ShelterUpdateRequest $request, Shelter $shelter)
     {
-        $shelter = Shelter::findOrFail($id);
-        $shelter->name = $request->input('name');
-        $shelter->location = $request->input('location');
-        $shelter->capacity = $request->input('capacity');
+        if (isset($request->name)) {
+            $shelter->name = $request->name;
+        }
+
+        if (isset($request->location)) {
+            $shelter->location = $request->location;
+        }
+
+        if (isset($request->contact_info)) {
+            $shelter->contact_info = $request->contact_info;
+        }
+
+        if (isset($request->user_id)) {
+            $shelter->user_id = $request->user_id;
+        }
+
         $shelter->save();
 
-        return new ShelterResource($shelter);
+        return ShelterResource::make($shelter);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Shelter $shelter)
     {
-        $shelter = Shelter::findOrFail($id);
         $shelter->delete();
-
-        return response(null, 204);
+        return response()->json([
+            'success' => true,
+            'message' => 'Succesfully deleted'
+       ]);
     }
 }

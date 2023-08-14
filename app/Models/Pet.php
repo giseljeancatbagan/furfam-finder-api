@@ -9,6 +9,19 @@ class Pet extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'species',
+        'name',
+        'breed',
+        'birthday',
+        'gender',
+        'size',
+        'description',
+        'availability_status',
+        'image',
+        'shelter_id'
+    ];
+
     public function shelter()
     {
         return $this->belongsTo(Shelter::class);

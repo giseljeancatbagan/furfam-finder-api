@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,15 +23,16 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        $user = new User;
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password'));
-        $user->save();
-
-        return new UserResource($user);
+        return UserResource::make(User::create([
+        'username' => $request->username,
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
+        'contact_info' => $request->contact_info,
+        'password' => bcrypt($request->password)
+        
+        ]));
     }
 
     /**
@@ -43,25 +46,46 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        $user = User::findOrFail($id);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password'));
+       if (isset($request->username)) {
+            $user->username = $request->username;
+       }
+
+       if (isset($request->first_name)) {
+            $user->first_name = $request->first_name;
+        }
+
+        if (isset($request->last_name)) {
+            $user->last_name = $request->last_name;
+       }
+
+       if (isset($request->contact_info)) {
+            $user->contact_info = $request->contact_info;
+        }
+
+        if (isset($request->username)) {
+            $user->username = $request->username;
+        }   
+
+        if (isset($request->password)) {
+            $user->password = $request->password;
+        }
+
         $user->save();
 
-        return new UserResource($user);
+        return UserResource::make($user);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return response(null, 204);
+       $user->delete();
+       return response()->json([
+        'success' => true,
+        'message' => 'Successfully deleted'
+       ]);
     }
 }

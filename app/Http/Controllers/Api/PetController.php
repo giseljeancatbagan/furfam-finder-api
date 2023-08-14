@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PetStoreRequest;
 use App\Http\Resources\PetResource;
+use App\Http\Resources\UserResource;
 use App\Models\Pet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -21,15 +24,20 @@ class PetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PetStoreRequest $request)
     {
-        $pet = new Pet;
-        $pet->name = $request->input('name');
-        $pet->age = $request->input('age');
-        $pet->breed = $request->input('breed');
-        $pet->save();
+        return UserResource::make(Pet::create([
+            'species' => $request->species,
+            'name' =>$request->name,
+            'breed' =>$request->breed,
+            'birthday' => Carbon::parse(strtotime($request->birthday)),
+            'gender' =>$request->gender,
+            'size' =>$request->size,
+            'description' =>$request->description,
+            'availability_status' =>$request->availability_status,
+            'shelter_id' =>$request->shelter_id,
 
-        return new PetResource($pet);
+        ]));
     }
 
     /**
@@ -47,23 +55,14 @@ class PetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $pet = Pet::findOrFail($id);
-        $pet->name = $request->input('name');
-        $pet->age = $request->input('age');
-        $pet->breed = $request->input('breed');
-        $pet->save();
-    
-        return new PetResource($pet);
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pet $pet)
     {
-        $pet = Pet::findOrFail($id);
-        $pet->delete();
-
-        return response(null, 204);
+       
     }
 }
