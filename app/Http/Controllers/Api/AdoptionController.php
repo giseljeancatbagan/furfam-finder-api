@@ -30,7 +30,7 @@ class AdoptionController extends Controller
             'pet_id' => $request->pet_id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'contact_id' => $request->contact_id,
+            'contact_info' => $request->contact_info,
             'adoption_date' =>Carbon::parse(strtotime($request->adoption_date)),
 
         ]));

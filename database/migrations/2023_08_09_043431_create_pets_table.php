@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('size', ['small', 'medium', 'large', 'giant']);
             $table->text('description');
             $table->enum('availability_status', ['Available', 'Pending', 'Adopted']);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('shelter_id');
             $table->timestamps();
 

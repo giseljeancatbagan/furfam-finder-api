@@ -26,7 +26,7 @@ class PetController extends Controller
      */
     public function store(PetStoreRequest $request)
     {
-        return UserResource::make(Pet::create([
+        return PetResource::make(Pet::create([
             'species' => $request->species,
             'name' =>$request->name,
             'breed' =>$request->breed,

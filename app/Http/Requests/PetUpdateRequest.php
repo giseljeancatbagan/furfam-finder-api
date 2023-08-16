@@ -26,12 +26,12 @@ class PetUpdateRequest extends FormRequest
             return [
                 'species' => 'sometimes|required|in:dog, cat, bird',
                 'name' => 'sometimes|required',
-                'breed' => 'sometimes|required',
+                'breed' => 'sometimes|required|in:shih tzu, siberian husky, poodle, maltese, siamese, ragdoll, persian, silkie, parrot',
                 'birthday' => 'sometimes|required',
-                'gender' => 'sometimes|required',
-                'size' => 'sometimes|required',
+                'gender' => 'sometimes|required|in:male,female',
+                'size' => 'sometimes|required|in:small, medium, large, giant',
                 'description' => 'sometimes|required',
-                'availability_status' => 'sometimes|required',
+                'availability_status' => 'sometimes|required|in:available, pending, adopted',
                 'image' => 'sometimes|required',
                 'shelter_id' => 'sometimes|required',
     

@@ -27,7 +27,7 @@ class ShelterStoreRequest extends FormRequest
             'name' => 'required',
             'location' => 'required',
             'contact_info' => 'required',
-            'user_id' => 'required|exists:user,id'
+            'user_id' => 'required|exists:users,id'
         ];
     }
 

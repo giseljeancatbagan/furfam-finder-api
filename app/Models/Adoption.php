@@ -9,6 +9,14 @@ class Adoption extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'pet_id',
+        'first_name',
+        'last_name',
+        'contact_info',
+        'adoption_date'
+    ];
+
     public function pet()
     {
         return $this->belongsTo(Pet::class);
