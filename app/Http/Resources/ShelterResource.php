@@ -18,7 +18,8 @@ class ShelterResource extends JsonResource
             'name' => $this->name,
             'location' => $this->location,
             'contact_info' => $this->contact_info,
-            'user_id' => $this->user_id
+            'user_id' => $this->user_id,
+            'user' => $this->user
         ];
     }
 }

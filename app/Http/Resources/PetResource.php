@@ -25,7 +25,8 @@ class PetResource extends JsonResource
             'description' => $this->description,
             'availability_status' => $this->availability_status,
             'image' => $this->image,
-            'shelter_id' => $this->shelter_id
+            'shelter_id' => $this->shelter_id,
+            'shelter' => $this->whenLoaded('shelter')
 
         ];
     }
