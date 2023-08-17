@@ -63,6 +63,10 @@ class PetController extends Controller
      */
     public function destroy(Pet $pet)
     {
-       
+        $pet->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Succesfully deleted'
+       ]);
     }
 }
