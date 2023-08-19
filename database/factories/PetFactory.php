@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Pet;
 use App\Models\Shelter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,14 +19,14 @@ class PetFactory extends Factory
     public function definition(): array
     {
         return [
-            'species' => fake()->randomElement(['dog', 'cat', 'bird', 'others']),
+            'species' => fake()->realText(),
             'name' => fake()->firstName(),
-            'breed' => fake()->randomElement(['shih tzu', 'siberian husky', 'poodle', 'maltese', 'siamese', 'ragdoll', 'persian', 'silkie', 'parrot']),
+            'breed' => fake()->realText(),
             'birthday' => fake()->dateTimeThisYear(),
-            'gender' => fake()->randomElement(['male', 'female']),
-            'size' => fake()->randomElement(['small', 'medium', 'large', 'giant']),
+            'gender' => fake()->realText(),
+            'size' => fake()->realText(),
             'description' => fake()->realText(),
-            'availability_status' => fake()->randomElement(['available', 'pending', 'adopted']),
+            'availability_status' => fake()->realText(),
             'image' => fake()->imageUrl(),
             'shelter_id' => Shelter::factory()
         ];

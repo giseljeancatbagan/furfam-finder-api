@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('breed');
             $table->timestamp('birthday');
-            $table->enum('gender', ['Male', 'Female']);
-            $table->enum('size', ['small', 'medium', 'large', 'giant']);
+            $table->text('gender');
+            $table->text('size');
             $table->text('description');
-            $table->enum('availability_status', ['Available', 'Pending', 'Adopted']);
+            $table->text('availability_status');
             $table->string('image')->nullable();
             $table->unsignedBigInteger('shelter_id');
             $table->timestamps();

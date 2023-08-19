@@ -24,14 +24,14 @@ class PetUpdateRequest extends FormRequest
     public function rules(): array
     {
             return [
-                'species' => 'sometimes|required|in:dog, cat, bird',
+                'species' => 'sometimes|required',
                 'name' => 'sometimes|required',
-                'breed' => 'sometimes|required|in:shih tzu, siberian husky, poodle, maltese, siamese, ragdoll, persian, silkie, parrot',
+                'breed' => 'sometimes|required',
                 'birthday' => 'sometimes|required',
-                'gender' => 'sometimes|required|in:male,female',
-                'size' => 'sometimes|required|in:small, medium, large, giant',
+                'gender' => 'sometimes|required',
+                'size' => 'sometimes|required',
                 'description' => 'sometimes|required',
-                'availability_status' => 'sometimes|required|in:available, pending, adopted',
+                'availability_status' => 'sometimes|required',
                 'image' => 'sometimes|required',
                 'shelter_id' => 'sometimes|required',
     

@@ -24,16 +24,15 @@ class PetStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'species' => 'required|in:dog, cat, bird',
-            // 'name' => 'required',
-            // 'breed' => 'required|in:shih tzu, siberian husky, poodle, maltese, siamese, ragdoll, persian, silkie, parrot',
-            // 'birthday' => 'required',
-            // 'gender' => 'required|in:male,female',
-            // 'size' => 'required|in:small, medium, large, giant',
-            // 'description' => 'required',
-            // 'availability_status' => 'required|in:available, pending, adopted',
-            // 'image' => 'required',
-            // 'shelter_id' => 'required',
+            'species' => 'required',
+            'name' => 'required',
+            'breed' => 'required',
+            'birthday' => 'required',
+            'gender' => 'required',
+            'size' => 'required',
+            'description' => 'required',
+            'availability_status' => 'required',
+            'shelter_id' => 'required',
 
         ];
     }
